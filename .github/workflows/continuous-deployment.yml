@@ -9,16 +9,15 @@ jobs:
     # This job runs on Linux
     runs-on: ubuntu-latest
     steps:
-        - uses: actions/checkout@v1
-        - uses: actions/setup-node@v1
-            with:
-            node-version: '10.x'
-        - run: npm install
-        - run: npm test
-      # This step is using to publish the new comming update to heroku.
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - run: npm install
+      - run: npm test
       - name: Deploy to Heroku
-      env:
-        HEROKU_API_TOKEN: ${{ secrets.HEROKU_TOKEN }}
-        HEROKU_APP_NAME: ${{secrets.HEROKU_APP_NAME}}
-      if: github.ref == 'refs/heads/master' && job.status == 'success'
-      run: git push https://heroku:$HEROKU_API_TOKEN@git.heroku.com/$HEROKU_APP_NAME.git origin/master:master
+        env:
+          HEROKU_API_TOKEN: ${{ secrets.HEROKU_TOKEN }}
+          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+        if: github.ref == 'refs/heads/master' && job.status == 'success'
+        run: git push https://heroku:$HEROKU_API_TOKEN@git.heroku.com/$HEROKU_APP_NAME.git origin/master:master
