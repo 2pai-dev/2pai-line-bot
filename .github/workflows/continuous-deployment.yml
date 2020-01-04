@@ -12,7 +12,7 @@ jobs:
         - uses: actions/checkout@v1
         - uses: actions/setup-node@v1
             with:
-            node-version: '10.x'
+              node-version: '10.x'
         - run: npm install
         - run: npm test
       # This step is using to publish the new comming update to heroku.
