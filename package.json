@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "bottender dev",
+    "dev": "node api.js && bottender dev",
     "lint": "eslint .",
     "prestart": "npm install",
-    "start": "bottender start",
+    "start": "node api.js && bottender start",
     "test": "jest"
   },
   "dependencies": {
